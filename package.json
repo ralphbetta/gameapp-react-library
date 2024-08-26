@@ -1,0 +1,16 @@
+{
+  "name": "gammaapp",
+  "version": "1.0.0",
+  "description": "The is a tutorial implementaion by alexeagleson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "betta gamma",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.3.4",
+    "react": "^18.3.1",
+    "typescript": "^5.5.4"
+  }
+}
