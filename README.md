@@ -1,51 +1,88 @@
-# React + TypeScript + Vite
+# Sixchat React Library
+Sixchat is a powerful React component designed to embed a real-time chat interface into your web applications. Whether you're building customer support systems or live chat features, Sixchat provides an out-of-the-box solution.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Features
+ - Real-time Messaging: Powered by WebSocket for instant communication.
+- Customizable Interface: Easily adjust the title, caption, and overall styling.
+- Keyboard Shortcuts: Supports sending messages with the "Enter" key.
+- Device ID Management: Automatically assigns and stores unique device IDs.
+- Timestamps: Displays human-readable timestamps like "2 minutes ago."
+## 📦 Installation
+Install the component using npm or yarn:
 
-Currently, two official plugins are available:
+```
+npm install sixchat
+```
+or
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+yarn add sixchat
+```
+## 🛠️ Usage
+Here's how to integrate the Sixchat component into your React application:
 
-## Expanding the ESLint configuration
+```javascript
+import React from 'react';
+import { Sixchat } from 'sixchat';
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+function App() {
+  return (
+    <div>
+      <h1>Welcome to Sixchat</h1>
+      <Sixchat 
+        uid="12345" 
+        title="Customer Support" 
+        caption="How can we help you today?" 
+      />
+    </div>
+  );
+}
 
-- Configure the top-level `parserOptions` property like this:
+export default App;
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+## 🎨 Props
+The Sixchat component accepts the following props:
+
+| Prop        | Type           | Default  | Description  |
+| ------------- |:-------------:| -----:|  -----:|
+| uid     | string | 7 | Unique identifier for the user. |
+| title     | string | SixChat | Unique identifier for the user. |
+| caption     | string | Customer Support | Displayed under the title |
+| apikey     | string | ***** | Your API key for authentication |
+| secret     | string | ***** | Secret key for additional  |
+
+
+## ✨ Example
+```javascript
+<Sixchat
+  uid="12345"
+  title="Live Chat"
+  caption="We're here to help!"
+  apikey="your-api-key"
+  secrete="your-secret-key"
+/>
+```
+## ⚙️ Development
+To contribute or customize the library, clone the repository and install dependencies:
+
+```
+git clone https://github.com/yourusername/sixchat.git
+cd sixchat
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### To start the development server:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
-# gameapp-react-library
+npm start
+```
+
+## 📝 License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## 🤝 Contributing
+Contributions are welcome! Please fork the repository, create a new branch, and submit a pull request.
+
+📧 Contact
+For any questions or support, please open an issue on GitHub or contact us at contact@ralphbetta.com

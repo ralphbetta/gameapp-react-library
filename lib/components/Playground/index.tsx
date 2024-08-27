@@ -20,6 +20,8 @@ interface PlaygroundProps {
     uid?: string;
     title?: string;
     caption?: string;
+    apikey?: string;
+    secrete?: string;
 }
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;

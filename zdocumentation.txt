@@ -1,1 +1,171 @@
 
+Documentation Aid
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#tables -- read me sheet
+https://readme.so/editor -----read me editor
+
+
+npm create vite@latest vite-storybook-library -- --template react-ts
+npx storybook@latest init
+npm run storybook
+
+Step 3. Add TailwindCSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+
+Step 1. Let’s dive right in by installing Vite
+
+npm create vite@latest ui-kit -- --template react-ts
+cd ui-kit 
+code .
+
+OR
+
+npm create vite@latest //follow the prompt
+
+
+Step 3. Add TailwindCSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+Step 2. Add Storybook
+npx storybook init --builder=vite
+
+
+Step 4. File structure
+Create the lib folder on the root of the project , Within this folder, create a main.ts file, it will serve as the central hub for exporting your components.
+Additionally, create a components folder within the lib directory; this folder will serve as the primary residence for all your components.
+
+-lib/
+---components/
+---main.ts
+
+Step 5. Update Vite config
+With the fundamental file structure in place, let’s fine-tune the remaining configurations. Open up the vite.config.js file and incorporate the path to your content. This step ensures that Vite recognizes and processes the specified content, aligning with the established file structure.
+
+content: [
+    "./lib/**/*.{js,ts,jsx,tsx}",
+  ],
+
+Step 6. Update the Vite Config
+Now, let’s dive into the critical configuration file: vite.config.js.
+In this step, we’ll make substantial updates. Primarily, we’re focusing on the library-related aspects. Essentially, we’re instructing Vite not to duplicate the content of the public folder, as it is unnecessary for our purposes.
+Additionally, we’re providing Vite with pointers on locating the main file from which we export the components. Furthermore, we’re specifying a name and format for the generated file, ensuring compatibility with various environments such as ES Modules and UMD. We also assign a name for the exported file.
+Vite works with Rollup as its bundler. Because our library will be used in an environment that already has some of these required libraries, we’re basically telling Rollup to go ahead and use what’s already there!
+
+build: {
+    copyPublicDir: false,
+    lib: {
+      entry: path.resolve(__dirname, "lib/main.ts"),
+      name: "UI KIT",
+      formats: ["es", "umd"],
+      fileName: "ui-kit",
+    },
+    rollupOptions: {
+      external: ["react", "react-dom", "react/jsx-runtime", "tailwindcss"],
+    },
+  },
+
+
+Step 7. Also, let’s add type support on the exported library, the dts plugins handle that for us.
+
+npm install -D vite-plugin-dts
+...
+//vite.config.js
+
+plugins: [react(), dts({ include: ["lib"], insertTypesEntry: true })],
+
+
+Step 7. Storybook
+Now let’s update the storybook with our lib address and for the preview, we need to add the tailwind.css address.
+
+//.storybook/main.ts
+stories: ["../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+
+//.storybook/preview.ts
+import "../lib/tailwind.css";
+
+
+Step 8. package.json
+The last step, package.json, let’s update it as below:
+
+//package.json
+...
+"name": "@ali-nuri/vite-tailwind-library",
+...
+ "private": false,
+  "version": "0.0.1",
+  "main": "dist/ui-kit.umd.js",
+  "module": "dist/ui-kit.mjs",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/ui-kit.mjs",
+      "require": "./dist/ui-kit.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+...
+"scripts": {
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "storybook": "storybook dev -p 6006",
+    "build": "tsc && vite build",
+    "build:storybook": "storybook build"
+  },
+...
+"peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+🥳 Done! Now you can build and publish your package on GitHub, and GitLab.
+
+
+
+
+//-------------------
+
+create and open folder
+npm init --- fill the informations
+change license to MIT
+name: @username/libraryname
+
+npx tsc --init
+
+
+
+ 📂my-component-library
+  ┣ 📂lib
+ +┃ ┣ 📂components
+ +┃ ┃ ┣ 📂Button
+ +┃ ┃ ┃ ┗ 📜index.tsx
+ +┃ ┃ ┣ 📂Input
+ +┃ ┃ ┃ ┗ 📜index.tsx
+ +┃ ┃ ┗ 📂Label
+ +┃ ┃   ┗ 📜index.tsx
+  ┃ ┗ 📜main.ts
+
+
+// lib/components/Button/index.tsx
+export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <button {...props} />
+}
+// lib/components/Input/index.tsx
+export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return <input {...props} />
+}
+// lib/components/Label/index.tsx
+export function Label(props: React.LabelHTMLAttributes<HTMLLabelElement>) {
+  return <label {...props} />
+}
+Finally export the components from the library's main file:
+// lib/main.ts
+export { Button } from './components/Button'
+export { Input } from './components/Input'
+export { Label } from './components/Label'
