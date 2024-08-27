@@ -1,4 +1,4 @@
-import { Button, Label, Input } from '../';
+import { Button } from '../lib/main';
 
 function App() {
 
