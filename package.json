@@ -6,7 +6,9 @@
   "type": "module",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
-  "files": [ "dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/receter/my-component-library"
@@ -42,14 +44,17 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "eslint-plugin-storybook": "^0.8.0",
     "glob": "^10.3.10",
+    "postcss": "^8.4.41",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^8.0.4",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5.4.3",
     "vite": "^4.5.3",
     "vite-plugin-dts": "^3.7.3",
