@@ -1,5 +1,5 @@
-// import { Button } from '../';
-import { Button, Playground } from '../lib/main';
+// import { Button, Sixchat } from '../';
+import { Button, Sixchat } from '../lib/main';
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <p>Hello world</p>
       <Button className=''>Click Me</Button>
 
-      <Playground title='Bella Estate' />
+      <Sixchat title='Bella Estate' />
     </div>
   )
 }

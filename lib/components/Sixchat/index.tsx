@@ -16,7 +16,7 @@ interface ChatMessage {
     timestamp: string;
 }
 
-interface PlaygroundProps {
+interface SixchatProps {
     uid?: string;
     title?: string;
     caption?: string;
@@ -26,7 +26,7 @@ interface PlaygroundProps {
 
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>;
 
- export const Playground: React.FC<PlaygroundProps> = ({ uid = '7', title = 'Oxy Playground', caption = 'Customer Support' }) => {
+ export const Sixchat: React.FC<SixchatProps> = ({ uid = '7', title = 'Oxy Playground', caption = 'Customer Support' }) => {
 
 
     const [expand, setExpand] = useState<boolean>(false);
